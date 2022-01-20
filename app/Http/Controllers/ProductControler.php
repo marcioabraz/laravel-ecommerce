@@ -28,7 +28,8 @@ class ProductControler extends Controller
      */
     public function create()
     {
-        //
+        //vai para a pagina create
+        return view('products.create');
     }
 
     /**
@@ -39,7 +40,23 @@ class ProductControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //grava no banco de dados
+        $name = $request->name;
+        $description = $request->description;
+        $price = $request->price;
+        //debug dd($name, $desc, $price)
+        Product::create([
+            'name' => $name,
+            'description' => $description,
+            'price' => $price
+        ]);
+        //outro jeito de fazer 
+        // Product::create([
+        //     'name' => $$request->name;,
+        //     'description' => $request->description,
+        //     'price' => $request->price
+        // ]);
+            return redirect('/products');
     }
 
     /**
@@ -51,6 +68,8 @@ class ProductControler extends Controller
     public function show($id)
     {
         //
+        $product = Product::find($id);
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -62,6 +81,8 @@ class ProductControler extends Controller
     public function edit($id)
     {
         //
+        $product = Product::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -74,6 +95,17 @@ class ProductControler extends Controller
     public function update(Request $request, $id)
     {
         //
+        $product = Product::find($id);
+        //1 dos jeito de fazer 
+        // $product->name = $request->name;
+        //....
+        // $product->save();
+        $product->update([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'price'=> $request->price
+        ]);
+        return redirect('/products');
     }
 
     /**
