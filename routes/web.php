@@ -24,4 +24,4 @@ Route::post('/products/store',[ProductControler::class,'store']);
 Route::get('/products/show/{id}',[ProductControler::class,'show']);
 Route::get('/products/edit/{id}',[ProductControler::class,'edit']);
 Route::post('/products/update/{id}',[ProductControler::class,'update']);
-Route::get('/products/delete/{id}',[ProductControler::class,'delete']);
+Route::get('/products/delete/{id}',[ProductControler::class,'destroy']);

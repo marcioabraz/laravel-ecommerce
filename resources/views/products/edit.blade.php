@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Editar Produto</h1>
+    <a href="/products/delete/{{$product->id}}">Deletar</a>
         <form action="/products/update/{{$product->id}}" method="POST">
         @csrf
             <input type="name" name="name" placeholder="Nome" value="{{$product->name}}"><br><br>
